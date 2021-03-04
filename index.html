@@ -6,74 +6,95 @@
     <title>xox oyunu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    table, td {
-        border: 1px solid black;
-        /*border-collapse: collapse;*/
-    }
-    button{width: 181.3px;height: 45px;}
-    #b1, #b2{width: 220px;height: 45px;}
+        table, td {
+            border: 1px solid black;
+            /*border-collapse: collapse;*/
+        }
+
+        button {
+            width: 181.3px;
+            height: 45px;
+        }
+s
+        #b1, #b2 {
+            width: 220px;
+            height: 45px;
+        }
     </style>
 </head>
 
-<body  ondragstart="return false">
-    <h3>XOX OYUNUNA HOŞ GELDİNİZ.</h3>
-    <table id="xox_table" style="width:1px">
-        <tr>
-            <td><img id="00" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="01" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="02" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-        </tr>
-        <tr>
-            <td><img id="10" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="11" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="12" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-        </tr>
-        <tr>
-            <td><img id="20" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="21" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-            <td><img id="22" onclick="tiklama(id)" src = "resimler/bos.png"></td>
-          
-        </tr>
-    </table>
-    <button onclick="sifirla(1,2)">X olarak yeniden başla</button>
-    <button onclick="sifirla(2,1)">O olarak yeniden başla</button><br>
+<body ondragstart="return false">
+<h3>XOX OYUNUNA HOŞ GELDİNİZ.</h3>
+Kaynak kodları: <a href="https://github.com/lutfullaherkaya/xox-oyunu">github.com/lutfullaherkaya/xox-oyunu</a>
 
-    <p1 id="isaret_mesaji"></p1><p1 id="bot_oynama"></p1><br>
+<table id="xox_table" style="width:1px">
+    <tr>
+        <td><img id="00" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="01" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="02" onclick="tiklama(id)" src="resimler/bos.png"></td>
+    </tr>
+    <tr>
+        <td><img id="10" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="11" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="12" onclick="tiklama(id)" src="resimler/bos.png"></td>
+    </tr>
+    <tr>
+        <td><img id="20" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="21" onclick="tiklama(id)" src="resimler/bos.png"></td>
+        <td><img id="22" onclick="tiklama(id)" src="resimler/bos.png"></td>
 
-    <table>
-        <tr>
-            <th>Skor Tablosu</th>
-            <th></th>
-            <th id="zorlukderecesi" rowspan="2" style="text-align:center">Zorluk Derecesi Normal<br>(yeniden başlayınca etkili olur.)</th>
-        </tr>
+    </tr>
+</table>
+<button onclick="sifirla(1,2)">X olarak yeniden başla</button>
+<button onclick="sifirla(2,1)">O olarak yeniden başla</button>
+<br>
 
-        <tr>
-            <th>Oyuncu: </th>
-            <td id="oyuncu_skor_tablo">0</td>
-            
-        </tr>
-        <tr>
-            <th>Bilgisayar: </th>
-            <td id="cpu_skor_tablo">0</td>
-            <td><button id="b1" onclick="normalmod()">Normal bot</button></td>
-        </tr>
-        <tr>
-            <th>Beraberelik: </th>
-            <td id="beraberelik_tablo">0</td>
-            <td><button id="b2" onclick="zormod()">Yenilmez bot</button></td>
-        </tr>
-    </table>    
+<p1 id="isaret_mesaji"></p1>
+<p1 id="bot_oynama"></p1>
+<br>
 
-    <script>
-        //tum tablo dolarsa program sonsuz döngüye girer karematris fonksiyonunda
-        var xox_table = document.getElementById("xox_table").innerHTML;
-        var oyuncu_skor= 0;
-        var cpu_skor=0;
-        var beraberelik_sayisi=0;
-        function sleep(ms) {
+<table>
+    <tr>
+        <th>Skor Tablosu</th>
+        <th></th>
+        <th id="zorlukderecesi" rowspan="2" style="text-align:center">Zorluk Derecesi Normal<br>(yeniden başlayınca
+            etkili olur.)
+        </th>
+    </tr>
+
+    <tr>
+        <th>Oyuncu:</th>
+        <td id="oyuncu_skor_tablo">0</td>
+
+    </tr>
+    <tr>
+        <th>Bilgisayar:</th>
+        <td id="cpu_skor_tablo">0</td>
+        <td>
+            <button id="b1" onclick="normalmod()">Normal bot</button>
+        </td>
+    </tr>
+    <tr>
+        <th>Beraberelik:</th>
+        <td id="beraberelik_tablo">0</td>
+        <td>
+            <button id="b2" onclick="zormod()">Yenilmez bot</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    //tum tablo dolarsa program sonsuz döngüye girer karematris fonksiyonunda
+    var xox_table = document.getElementById("xox_table").innerHTML;
+    var oyuncu_skor = 0;
+    var cpu_skor = 0;
+    var beraberelik_sayisi = 0;
+
+    function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-        }
-        function arraysEqual(a, b) {
+    }
+
+    function arraysEqual(a, b) {
         if (a === b) return true;
         if (a == null || b == null) return false;
         if (a.length != b.length) return false;
@@ -81,231 +102,330 @@
             if (a[i] !== b[i]) return false;
         }
         return true;
-        }
-        function randomChoice(arr) {return arr[Math.floor(Math.random() * arr.length)];};
-        function kareMatrisElementDegis(arr,changeto) {
-            var k=Math.floor(Math.random() * 3);
-            var l=Math.floor(Math.random() * 3);
-            var islemyapildi = 0;
-            var islemsayisi = 0;
-            while (islemyapildi == 0 && islemsayisi < 1000) {
-                if (arr[k][l] == 0){
-                    arr[k][l] = changeto; //cputablodeperi ile değiştirmeyi dene
-                    if (changeto == 2){
-                        document.getElementById(k.toString()+l.toString()).src = "resimler/oresim.png";
-                    } else if (changeto == 1) {
-                        document.getElementById(k.toString()+l.toString()).src = "resimler/xresim.png";
-                    };
-                    islemyapildi = 1;
-                } else {
-                    k=Math.floor(Math.random() * 3);
-                    l=Math.floor(Math.random() * 3);
-                };
-            islemsayisi-=-1;
-            };
-        };
-        function kazanma(kazanan_tablo_degeri) {
-            var t = kazanan_tablo_degeri;
-            var kazandi = 0;
-            // kazandi = 2 demek berabere demektir.
-            for (i=0;i<3;i+=1){
-                if (arraysEqual(tablo[i],[t, t, t])) {
-                    kazandi = 1;
-                } else if (tablo[0][i]==t && tablo[0][i]==tablo[1][i] && tablo[0][i]==tablo[2][i]) {
-                    kazandi = 1;
-                };
-            };
-            if (tablo[0][0]==t && tablo[0][0]==tablo[1][1] && tablo[0][0]==tablo[2][2]) { //y=x
-                kazandi = 1;
-            } else if (tablo[0][2]==t && tablo[0][2]==tablo[1][1] && tablo[0][2]==tablo[2][0]) { //y=-x
-                kazandi = 1;
-            };
-            var s0_varmi = 0;
-            for(r=0;r<3;r+=1){
-                for(c=0;c<3;c+=1){
-                    if (tablo[r][c] == 0){
-                        s0_varmi = 1;
-                    }
+    }
+
+    function randomChoice(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    };
+
+    function kareMatrisElementDegis(arr, changeto) {
+        var k = Math.floor(Math.random() * 3);
+        var l = Math.floor(Math.random() * 3);
+        var islemyapildi = 0;
+        var islemsayisi = 0;
+        while (islemyapildi == 0 && islemsayisi < 1000) {
+            if (arr[k][l] == 0) {
+                arr[k][l] = changeto; //cputablodeperi ile değiştirmeyi dene
+                if (changeto == 2) {
+                    document.getElementById(k.toString() + l.toString()).src = "resimler/oresim.png";
+                } else if (changeto == 1) {
+                    document.getElementById(k.toString() + l.toString()).src = "resimler/xresim.png";
                 }
-            };
-            if (s0_varmi == 0) {
-                kazandi = 2;
-            };
-            if (kazandi == 1 && t == oyuncu_tablo_degeri){
-                window.alert("kazandın la xd");
-                oyuncu_skor += 1;
-                oyun_bitti = 1;
-                document.getElementById("oyuncu_skor_tablo").innerHTML = oyuncu_skor;
-
-
+                ;
+                islemyapildi = 1;
+            } else {
+                k = Math.floor(Math.random() * 3);
+                l = Math.floor(Math.random() * 3);
             }
-            else if (kazandi == 1 && t == cpu_tablo_degeri){
-                window.alert("Kaybettin :(");
-                cpu_skor += 1;
-                oyun_bitti = 1;
-                document.getElementById("cpu_skor_tablo").innerHTML = cpu_skor;
-
-            }
-            else if (kazandi == 2){
-                window.alert("Berabere :P");
-                beraberelik_sayisi += 1;
-                oyun_bitti = 1;
-                document.getElementById("beraberelik_tablo").innerHTML = beraberelik_sayisi;
-
-            };
-        }  
-        function zormod(){window.zor = 1; document.getElementById("zorlukderecesi").innerHTML = "Zorluk Derecesi: Zor<br>(yeniden başlayınca etkili olur.)";}
-        function normalmod(){window.zor = 0; document.getElementById("zorlukderecesi").innerHTML = "Zorluk Derecesi: Normal<br>(yeniden başlayınca etkili olur.)";}
-        window.zor = 0;
-        function sifirla(oyuncu_isareti,cpu_isareti){
-            // 0=boş, 1= x, 2= o
-            window.tablo = [
-                [0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0]
-            ];
-            var isaretlerr= [0,"X","O"];
-            window.oyuncu_tablo_degeri = oyuncu_isareti;
-            document.getElementById("isaret_mesaji").innerHTML = "İşaretiniz "+isaretlerr[oyuncu_isareti]+ "'dir.";
-            window.cpu_tablo_degeri = cpu_isareti;
-            window.oyun_bitti = 0;
-            document.getElementById("xox_table").innerHTML = xox_table;
+            ;
+            islemsayisi -= -1;
         }
-        
-        sifirla(1,2);
+        ;
+    };
 
-        function tiklama(id) {
-            var bosa_tiklama = 0;
-            if (oyun_bitti == 0){
-                if (tablo[id.split("")[0]][id.split("")[1]] == 0){
-                    if (oyuncu_tablo_degeri == 1){document.getElementById(id).src = "resimler/xresim.png";};
-                    if (oyuncu_tablo_degeri == 2){document.getElementById(id).src = "resimler/oresim.png";};
-                    // id ye göre indexi alıp tabloyu değiştirir tıklamaya göre
-                    tablo[id.split("")[0]][id.split("")[1]]=oyuncu_tablo_degeri;
-                } else {
-                    bosa_tiklama = 1;
+    function kazanma(kazanan_tablo_degeri) {
+        var t = kazanan_tablo_degeri
+
+
+        ;
+        var kazandi = 0;
+        // kazandi = 2 demek berabere demektir.
+        for (i = 0; i < 3; i += 1) {
+            if (arraysEqual(tablo[i], [t, t, t])) {
+                kazandi = 1;
+            } else if (tablo[0][i] == t && tablo[0][i] == tablo[1][i] && tablo[0][i] == tablo[2][i]) {
+                kazandi = 1;
+            }
+            ;
+        }
+        ;
+        if (tablo[0][0] == t && tablo[0][0] == tablo[1][1] && tablo[0][0] == tablo[2][2]) { //y=x
+            kazandi = 1;
+        } else if (tablo[0][2] == t && tablo[0][2] == tablo[1][1] && tablo[0][2] == tablo[2][0]) { //y=-x
+            kazandi = 1;
+        }
+        ;
+        var s0_varmi = 0;
+        for (r = 0; r < 3; r += 1) {
+            for (c = 0; c < 3; c += 1) {
+                if (tablo[r][c] == 0) {
+                    s0_varmi = 1;
                 }
-                kazanma(oyuncu_tablo_degeri);
-            };
-            if (oyun_bitti == 0 && bosa_tiklama == 0){botHamle();};
-        };
-
-        async function botHamle() {
-
-            // BOT yalandan düşünme olayı
+            }
+        }
+        ;
+        if (s0_varmi == 0) {
+            kazandi = 2;
+        }
+        ;
+        if (kazandi == 1 && t == oyuncu_tablo_degeri) {
+            window.alert("kazandın la xd");
+            oyuncu_skor += 1;
             oyun_bitti = 1;
-            document.getElementById("bot_oynama").innerHTML = " BOT DÜŞÜNÜYOR.";
-            await sleep(350);
-            document.getElementById("bot_oynama").innerHTML = "";
-            oyun_bitti = 0;
+            document.getElementById("oyuncu_skor_tablo").innerHTML = oyuncu_skor;
 
 
-            var bot_hamle=0;
-            var degerler = [cpu_tablo_degeri,oyuncu_tablo_degeri];
+        } else if (kazandi == 1 && t == cpu_tablo_degeri) {
+            window.alert("Kaybettin :(");
+            cpu_skor += 1;
+            oyun_bitti = 1;
+            document.getElementById("cpu_skor_tablo").innerHTML = cpu_skor;
 
-            //bot (%95 şansla akıllı davranır.)
-            if (Math.random()>0.05 || zor == 1){
-                if (zor == 1){
-                    if (arraysEqual(tablo[0],[oyuncu_tablo_degeri,0,0]) && arraysEqual(tablo[1],[0,0,0]) && arraysEqual(tablo[2],[0,0,0])){
-                        tablo[1][1]=cpu_tablo_degeri;
-                        if (cpu_tablo_degeri == 1){document.getElementById("11").src = "resimler/xresim.png";};
-                        if (cpu_tablo_degeri == 2){document.getElementById("11").src = "resimler/oresim.png";};
-                        bot_hamle =1;
-                    }
-                    else if (arraysEqual(tablo[0],[0,0,oyuncu_tablo_degeri]) && arraysEqual(tablo[1],[0,0,0]) && arraysEqual(tablo[2],[0,0,0])){
-                        tablo[1][1]=cpu_tablo_degeri;
-                        if (cpu_tablo_degeri == 1){document.getElementById("11").src = "resimler/xresim.png";};
-                        if (cpu_tablo_degeri == 2){document.getElementById("11").src = "resimler/oresim.png";};
-                        bot_hamle =1;
-                    }
-                    else if (arraysEqual(tablo[0],[0,0,0]) && arraysEqual(tablo[1],[0,0,0]) && arraysEqual(tablo[2],[oyuncu_tablo_degeri,0,0])){
-                        tablo[1][1]=cpu_tablo_degeri;
-                        if (cpu_tablo_degeri == 1){document.getElementById("11").src = "resimler/xresim.png";};
-                        if (cpu_tablo_degeri == 2){document.getElementById("11").src = "resimler/oresim.png";};
-                        bot_hamle =1;
-                    }
-                    else if (arraysEqual(tablo[0],[0,0,0]) && arraysEqual(tablo[1],[0,0,0]) && arraysEqual(tablo[2],[0,0,oyuncu_tablo_degeri])){
-                        tablo[1][1]=cpu_tablo_degeri;
-                        if (cpu_tablo_degeri == 1){document.getElementById("11").src = "resimler/xresim.png";};
-                        if (cpu_tablo_degeri == 2){document.getElementById("11").src = "resimler/oresim.png";};
-                        bot_hamle =1;
-                    }
-                    else if (arraysEqual(tablo[0],[0,0,0]) && arraysEqual(tablo[1],[0,oyuncu_tablo_degeri,0]) && arraysEqual(tablo[2],[0,0,0])){
-                        tablo[2][2]=cpu_tablo_degeri;
-                        if (cpu_tablo_degeri == 1){document.getElementById("22").src = "resimler/xresim.png";};
-                        if (cpu_tablo_degeri == 2){document.getElementById("22").src = "resimler/oresim.png";};
-                        bot_hamle =1;
-                    }
-                };
-            
-                for(k=0;k<2; k+=1){
-                    for(i=0;i<3;i+=1) {
-                        var m = degerler[k];
-                        var yatay_tablo = [m,m,m];
-                        yatay_tablo[i] = 0;
-                        if (bot_hamle == 0){
+        } else if (kazandi == 2) {
+            window.alert("Berabere :P");
+            beraberelik_sayisi += 1;
+            oyun_bitti = 1;
+            document.getElementById("beraberelik_tablo").innerHTML = beraberelik_sayisi;
 
-                            //xx_ veya x_x olayına müdahele
-                            if (arraysEqual(tablo[i],[m,m,0])){
-                                tablo[i][2]=cpu_tablo_degeri;
-                                if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+2).src = "resimler/xresim.png";};
-                                if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+2).src = "resimler/oresim.png";};
-                                bot_hamle =1;
-                                continue;
-                            }
-                            else if (arraysEqual(tablo[i],[m,0,m])){
-                                tablo[i][1]=cpu_tablo_degeri;
-                                if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+1).src = "resimler/xresim.png";};
-                                if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+1).src = "resimler/oresim.png";};
-                                bot_hamle =1;
-                                continue;
-                            }
-                            else if (arraysEqual(tablo[i],[0,m,m])){
-                                tablo[i][0]=cpu_tablo_degeri;
-                                if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+0).src = "resimler/xresim.png";};
-                                if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+0).src = "resimler/oresim.png";};
-                                bot_hamle =1;
-                                continue;
-                            }
-                            //xx_ veya x_x olayına müdahele
+        }
+        ;
+    }
 
-                            //çapraz
-                            else if (arraysEqual([tablo[0][0],tablo[1][1],tablo[2][2]], yatay_tablo)){
-                                tablo[i][i]=cpu_tablo_degeri;
-                                if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+i).src = "resimler/xresim.png";};
-                                if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+i).src = "resimler/oresim.png";};
-                                bot_hamle =1;
-                                continue;
-                            }
-                            else if (arraysEqual([tablo[0][2],tablo[1][1],tablo[2][0]], yatay_tablo)){
-                                tablo[i][2-i]=cpu_tablo_degeri;
-                                if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+(2-i)).src = "resimler/xresim.png";};
-                                if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+(2-i)).src = "resimler/oresim.png";};
-                                bot_hamle =1;
-                                continue;
-                            };
+    function zormod() {
+        window.zor = 1;
+        document.getElementById("zorlukderecesi").innerHTML = "Zorluk Derecesi: Zor<br>(yeniden başlayınca etkili olur.)";
+    }
 
-                            //ust uste
-                            for(j=0;j<3;j+=1){
-                                if (arraysEqual([tablo[0][j],tablo[1][j],tablo[2][j]], yatay_tablo)){
-                                    tablo[i][j]=cpu_tablo_degeri;
-                                    if (cpu_tablo_degeri == 1){document.getElementById(i.toString()+j).src = "resimler/xresim.png";};
-                                    if (cpu_tablo_degeri == 2){document.getElementById(i.toString()+j).src = "resimler/oresim.png";};
-                                    bot_hamle =1;
-                                    break;
-                                }
-                            }
-                        }   
-                    }
-                };
-            };
+    function normalmod() {
+        window.zor = 0;
+        document.getElementById("zorlukderecesi").innerHTML = "Zorluk Derecesi: Normal<br>(yeniden başlayınca etkili olur.)";
+    }
 
-            if (bot_hamle == 0){
-                kareMatrisElementDegis(tablo,cpu_tablo_degeri);
+    window.zor = 0;
+
+    function sifirla(oyuncu_isareti, cpu_isareti) {
+        // 0=boş, 1= x, 2= o
+        window.tablo = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
+        var isaretlerr = [0, "X", "O"];
+        
+        window.oyuncu_tablo_degeri = oyuncu_isareti;
+        document.getElementById("isaret_mesaji").innerHTML = "İşaretiniz " + isaretlerr[oyuncu_isareti] + "'dir.";
+        window.cpu_tablo_degeri = cpu_isareti;
+        window.oyun_bitti = 0;
+        document.getElementById("xox_table").innerHTML = xox_table;
+    }
+
+    sifirla(1, 2);
+
+    function tiklama(id) {
+        var bosa_tiklama = 0;
+        if (oyun_bitti == 0) {
+            if (tablo[id.split("")[0]][id.split("")[1]] == 0) {
+                if (oyuncu_tablo_degeri == 1) {
+                    document.getElementById(id).src = "resimler/xresim.png";
+                }
+                ;
+                if (oyuncu_tablo_degeri == 2) {
+                    document.getElementById(id).src = "resimler/oresim.png";
+                }
+                ;
+                // id ye göre indexi alıp tabloyu değiştirir tıklamaya göre
+                tablo[id.split("")[0]][id.split("")[1]] = oyuncu_tablo_degeri;
+            } else {
+                bosa_tiklama = 1;
             }
-            kazanma(cpu_tablo_degeri);
-        };
-    </script>
+            kazanma(oyuncu_tablo_degeri);
+        }
+        ;
+        if (oyun_bitti == 0 && bosa_tiklama == 0) {
+            botHamle();
+        }
+        ;
+    };
+
+    async function botHamle() {
+
+        // BOT yalandan düşünme olayı
+        oyun_bitti = 1;
+        document.getElementById("bot_oynama").innerHTML = " BOT DÜŞÜNÜYOR.";
+        await sleep(350);
+        document.getElementById("bot_oynama").innerHTML = "";
+        oyun_bitti = 0;
+
+
+        var bot_hamle = 0;
+        var degerler = [cpu_tablo_degeri, oyuncu_tablo_degeri];
+
+        //bot (%95 şansla akıllı davranır.)
+        if (Math.random() > 0.05 || zor == 1) {
+            if (zor == 1) {
+                if (arraysEqual(tablo[0], [oyuncu_tablo_degeri, 0, 0]) && arraysEqual(tablo[1], [0, 0, 0]) && arraysEqual(tablo[2], [0, 0, 0])) {
+                    tablo[1][1] = cpu_tablo_degeri;
+                    if (cpu_tablo_degeri == 1) {
+                        document.getElementById("11").src = "resimler/xresim.png";
+                    }
+                    ;
+                    if (cpu_tablo_degeri == 2) {
+                        document.getElementById("11").src = "resimler/oresim.png";
+                    }
+                    ;
+                    bot_hamle = 1;
+                } else if (arraysEqual(tablo[0], [0, 0, oyuncu_tablo_degeri]) && arraysEqual(tablo[1], [0, 0, 0]) && arraysEqual(tablo[2], [0, 0, 0])) {
+                    tablo[1][1] = cpu_tablo_degeri;
+                    if (cpu_tablo_degeri == 1) {
+                        document.getElementById("11").src = "resimler/xresim.png";
+                    }
+                    ;
+                    if (cpu_tablo_degeri == 2) {
+                        document.getElementById("11").src = "resimler/oresim.png";
+                    }
+                    ;
+                    bot_hamle = 1;
+                } else if (arraysEqual(tablo[0], [0, 0, 0]) && arraysEqual(tablo[1], [0, 0, 0]) && arraysEqual(tablo[2], [oyuncu_tablo_degeri, 0, 0])) {
+                    tablo[1][1] = cpu_tablo_degeri;
+                    if (cpu_tablo_degeri == 1) {
+                        document.getElementById("11").src = "resimler/xresim.png";
+                    }
+                    ;
+                    if (cpu_tablo_degeri == 2) {
+                        document.getElementById("11").src = "resimler/oresim.png";
+                    }
+                    ;
+                    bot_hamle = 1;
+                } else if (arraysEqual(tablo[0], [0, 0, 0]) && arraysEqual(tablo[1], [0, 0, 0]) && arraysEqual(tablo[2], [0, 0, oyuncu_tablo_degeri])) {
+                    tablo[1][1] = cpu_tablo_degeri;
+                    if (cpu_tablo_degeri == 1) {
+                        document.getElementById("11").src = "resimler/xresim.png";
+                    }
+                    ;
+                    if (cpu_tablo_degeri == 2) {
+                        document.getElementById("11").src = "resimler/oresim.png";
+                    }
+                    ;
+                    bot_hamle = 1;
+                } else if (arraysEqual(tablo[0], [0, 0, 0]) && arraysEqual(tablo[1], [0, oyuncu_tablo_degeri, 0]) && arraysEqual(tablo[2], [0, 0, 0])) {
+                    tablo[2][2] = cpu_tablo_degeri;
+                    if (cpu_tablo_degeri == 1) {
+                        document.getElementById("22").src = "resimler/xresim.png";
+                    }
+                    ;
+                    if (cpu_tablo_degeri == 2) {
+                        document.getElementById("22").src = "resimler/oresim.png";
+                    }
+                    ;
+                    bot_hamle = 1;
+                }
+            }
+            ;
+
+            for (k = 0; k < 2; k += 1) {
+                for (i = 0; i < 3; i += 1) {
+                    var m = degerler[k];
+                    var yatay_tablo = [m, m, m];
+                    yatay_tablo[i] = 0;
+                    if (bot_hamle == 0) {
+
+                        //xx_ veya x_x olayına müdahele
+                        if (arraysEqual(tablo[i], [m, m, 0])) {
+                            tablo[i][2] = cpu_tablo_degeri;
+                            if (cpu_tablo_degeri == 1) {
+                                document.getElementById(i.toString() + 2).src = "resimler/xresim.png";
+                            }
+                            ;
+                            if (cpu_tablo_degeri == 2) {
+                                document.getElementById(i.toString() + 2).src = "resimler/oresim.png";
+                            }
+                            ;
+                            bot_hamle = 1;
+                            continue;
+                        } else if (arraysEqual(tablo[i], [m, 0, m])) {
+                            tablo[i][1] = cpu_tablo_degeri;
+                            if (cpu_tablo_degeri == 1) {
+                                document.getElementById(i.toString() + 1).src = "resimler/xresim.png";
+                            }
+                            ;
+                            if (cpu_tablo_degeri == 2) {
+                                document.getElementById(i.toString() + 1).src = "resimler/oresim.png";
+                            }
+                            ;
+                            bot_hamle = 1;
+                            continue;
+                        } else if (arraysEqual(tablo[i], [0, m, m])) {
+                            tablo[i][0] = cpu_tablo_degeri;
+                            if (cpu_tablo_degeri == 1) {
+                                document.getElementById(i.toString() + 0).src = "resimler/xresim.png";
+                            }
+                            ;
+                            if (cpu_tablo_degeri == 2) {
+                                document.getElementById(i.toString() + 0).src = "resimler/oresim.png";
+                            }
+                            ;
+                            bot_hamle = 1;
+                            continue;
+                        }
+                        //xx_ veya x_x olayına müdahele
+
+                        //çapraz
+                        else if (arraysEqual([tablo[0][0], tablo[1][1], tablo[2][2]], yatay_tablo)) {
+                            tablo[i][i] = cpu_tablo_degeri;
+                            if (cpu_tablo_degeri == 1) {
+                                document.getElementById(i.toString() + i).src = "resimler/xresim.png";
+                            }
+                            ;
+                            if (cpu_tablo_degeri == 2) {
+                                document.getElementById(i.toString() + i).src = "resimler/oresim.png";
+                            }
+                            ;
+                            bot_hamle = 1;
+                            continue;
+                        } else if (arraysEqual([tablo[0][2], tablo[1][1], tablo[2][0]], yatay_tablo)) {
+                            tablo[i][2 - i] = cpu_tablo_degeri;
+                            if (cpu_tablo_degeri == 1) {
+                                document.getElementById(i.toString() + (2 - i)).src = "resimler/xresim.png";
+                            }
+                            ;
+                            if (cpu_tablo_degeri == 2) {
+                                document.getElementById(i.toString() + (2 - i)).src = "resimler/oresim.png";
+                            }
+                            ;
+                            bot_hamle = 1;
+                            continue;
+                        }
+                        ;
+
+                        //ust uste
+                        for (j = 0; j < 3; j += 1) {
+                            if (arraysEqual([tablo[0][j], tablo[1][j], tablo[2][j]], yatay_tablo)) {
+                                tablo[i][j] = cpu_tablo_degeri;
+                                if (cpu_tablo_degeri == 1) {
+                                    document.getElementById(i.toString() + j).src = "resimler/xresim.png";
+                                }
+                                ;
+                                if (cpu_tablo_degeri == 2) {
+                                    document.getElementById(i.toString() + j).src = "resimler/oresim.png";
+                                }
+                                ;
+                                bot_hamle = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            ;
+        }
+        ;
+
+        if (bot_hamle == 0) {
+            kareMatrisElementDegis(tablo, cpu_tablo_degeri);
+        }
+        kazanma(cpu_tablo_degeri);
+    };
+</script>
 
 </body>
 
